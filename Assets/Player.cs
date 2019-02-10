@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public float speed;
     public Sprite[] sprites = new Sprite[8];
+    public Joystick joystick;
+
 
     private Rigidbody2D rb;
     private Vector2 moveVelocity;
@@ -20,8 +22,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        x = Input.GetAxisRaw("Horizontal");
-        y = Input.GetAxisRaw("Vertical");
+        x = Mathf.Round(joystick.Horizontal);
+        y = Mathf.Round(joystick.Vertical);
         Vector2 moveInput = new Vector2(x, y);
         moveVelocity = moveInput.normalized * speed;
     }
@@ -34,13 +36,13 @@ public class Player : MonoBehaviour
 
     void Animate()
     {
-        if (y == 1)
+        if (y > 0)
         {
-            if (x == 1)
+            if (x > 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
             }
-            if (x == -1)
+            if (x < 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
             }
@@ -49,13 +51,13 @@ public class Player : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
             }
         }
-        if (y == -1)
+        if (y < 0)
         {
-            if (x == 1)
+            if (x > 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[5];
             }
-            if (x == -1)
+            if (x < 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[7];
             }
@@ -66,11 +68,11 @@ public class Player : MonoBehaviour
         }
         if (y == 0)
         {
-            if (x == 1)
+            if (x > 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[4];
             }
-            if (x == -1)
+            if (x < 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
             }
