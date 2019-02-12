@@ -22,8 +22,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        x = Mathf.Round(joystick.Horizontal);
-        y = Mathf.Round(joystick.Vertical);
+        x = joystick.Horizontal;
+        y = joystick.Vertical;
+        
         Vector2 moveInput = new Vector2(x, y);
         moveVelocity = moveInput.normalized * speed;
     }
@@ -36,43 +37,59 @@ public class Player : MonoBehaviour
 
     void Animate()
     {
+        int anX, anY;
+        if (x > 0) {
+            anX = x > 0.25 ? 1 : 0;
+        }
+        else {
+            anX = x < -0.25 ? -1 : 0;
+        }
         if (y > 0)
         {
-            if (x > 0)
+            anY = y > 0.25 ? 1 : 0;
+        }
+        else
+        {
+            anY = y < -0.25 ? -1 : 0;
+        }
+
+        if (anY > 0)
+        {
+            if (anX > 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[3];
             }
-            if (x < 0)
+            if (anX < 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
             }
-            if (x == 0)
+            if (anX == 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[2];
             }
         }
-        if (y < 0)
+        if (anY < 0)
         {
-            if (x > 0)
+            if (anX > 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[5];
             }
-            if (x < 0)
+            if (anX < 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[7];
             }
-            if (x == 0)
+            if (anX == 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[6];
             }
         }
-        if (y == 0)
+        if (anY == 0)
         {
-            if (x > 0)
+            if (anX > 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[4];
             }
-            if (x < 0)
+            if (anX < 0)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
             }
