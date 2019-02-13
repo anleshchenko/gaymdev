@@ -13,13 +13,11 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveVelocity;
     private float x, y;
-    private float angle;
     private bool isRunning = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        angle = 0;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -28,7 +26,7 @@ public class Player : MonoBehaviour
     {
         x = joystick.Horizontal;
         y = joystick.Vertical;
-       
+
 
         Vector2 moveInput = new Vector2(x, y);
         moveVelocity = moveInput.normalized * speed;
@@ -40,8 +38,8 @@ public class Player : MonoBehaviour
         Animate();
     }
 
-    void Animate() {
-        transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(y, x) * 180 / Mathf.PI);
+    void Animate()
+    {
         if (x != 0f || y != 0f)
         {
             if (!isRunning)
@@ -54,6 +52,8 @@ public class Player : MonoBehaviour
                 anim.Play("player_idle");
             isRunning = false;
         }
+        if (isRunning)
+            transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(y, x) * 180 / Mathf.PI);
     }
 
     //void Animate()
