@@ -574,3 +574,5 @@ C:\Users\leand\gaymdev\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
 C:\Users\leand\gaymdev\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\leand\gaymdev\obj\Debug\Assembly-CSharp.dll
 C:\Users\leand\gaymdev\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Андрей\Desktop\gamedev2\gaymdev\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.dll
+C:\Users\Андрей\Desktop\gamedev2\gaymdev\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.xml
