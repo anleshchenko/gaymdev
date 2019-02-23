@@ -56,8 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AttackButton.cs" />
+    <Compile Include="Assets\Base.cs" />
     <Compile Include="Assets\Bullet.cs" />
     <Compile Include="Assets\CameraScript.cs" />
+    <Compile Include="Assets\IAttackable.cs" />
     <Compile Include="Assets\Player.cs" />
     <Compile Include="Assets\ReloadButton.cs" />
     <Compile Include="Assets\StabButton.cs" />
@@ -67,6 +69,8 @@
     <Compile Include="Assets\Virtual Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
     <Compile Include="Assets\Virtual Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Virtual Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
+    <Compile Include="Assets\Zombie.cs" />
+    <Compile Include="Assets\ZombieWave.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Андрей/Desktop/gamedev2/gaymdev/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

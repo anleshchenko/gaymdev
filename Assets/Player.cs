@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IAttackable
 {
+    public int health;
     public float speed;
     public float bulletSpeed;
     public Animator anim;
@@ -112,5 +113,15 @@ public class Player : MonoBehaviour
         canShoot = false;
         yield return new WaitForSeconds(0.25f);
         canShoot = true;
+    }
+
+    public void Attack(int damage)
+    {
+        health -= damage;
+    }
+
+    public Vector2 GetPosition()
+    {
+        return rb.position;
     }
 }
