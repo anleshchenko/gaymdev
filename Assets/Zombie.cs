@@ -12,8 +12,9 @@ public class Zombie : MonoBehaviour, IAttackable
     public int damage;
     public Animator animator;
 
-    private bool isMoving;
-    private bool isAttacking;
+    private bool isMoving = true;
+    public bool isAttacking;
+    public bool canAttack;
     
     private Rigidbody2D rg;
     private Vector2 direction;
@@ -24,9 +25,7 @@ public class Zombie : MonoBehaviour, IAttackable
     void Start()
     {     
         rg = GetComponent<Rigidbody2D>();
-        chooseTarget();
-        
-                
+        chooseTarget();              
     }
 
     private void chooseTarget() {
@@ -43,62 +42,70 @@ public class Zombie : MonoBehaviour, IAttackable
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (health <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-        else {
-            rotation = Mathf.Atan2(direction.y, direction.x) * 180 / Mathf.PI;
-            transform.eulerAngles = new Vector3(0, 0, rotation);
-            if (Vector2.Distance(rg.position, target.GetPosition()) < attackDistance)
+        if(player != null){
+            if (health <= 0)
             {
-                if (!isAttacking)
-                    StartCoroutine(Attack());
+                Destroy(gameObject);
             }
-            else
-            {
-                direction = new Vector2(target.GetPosition().x - rg.position.x, target.GetPosition().y - rg.position.y).normalized;
-                rg.MovePosition(rg.position + direction * speed * Time.fixedDeltaTime);
-                isMoving = true;
+            else {
+                direction = target.GetPosition() - rg.position;
+                rotation = Mathf.Atan2(direction.y, direction.x) * 180 / Mathf.PI;
+                transform.eulerAngles = new Vector3(0, 0, rotation);
+                if (canAttack && !isAttacking) {
+                    StartCoroutine(AttackTarget());
+                    target.Attack(10);
+                }
+                if (!isAttacking) {
+                    rg.MovePosition(rg.position + direction.normalized * speed * Time.fixedDeltaTime);
+                }
+                Animate();
             }
-            Animate();
         }
-        
     }
 
     void Animate() {
-        
-        if (isMoving)
+
+        if (!isAttacking)
         {
             animator.Play("zombie_move");
         }
-        else
-        {
-            if (isAttacking)
-            {
-                animator.Play("zombie_attack");
-            }
-            else {
-                animator.Play("zombie_idle");
-            }
+        else {
+            animator.Play("zombie_attack");
         }
     }
 
-    IEnumerator Attack() {
-        isMoving = false;
-        isAttacking = true;
-        yield return new WaitForSeconds(0.25f);
-        target.Attack(damage);
-        yield return new WaitForSeconds(0.5f);
-        isAttacking = false;
-        isMoving = true;
+    IEnumerator AttackTarget() {
+        if (!isAttacking && canAttack)
+        {
+            isAttacking = true;
+            yield return new WaitForSeconds(1f);
+            isAttacking = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag.Equals("Bullet")) {
+        if (collision.gameObject.tag.Equals("Bullet"))
+        {
             Attack(10);
         }
+        if (collision.gameObject.tag.Equals("Player")) {
+            target = player;
+            canAttack = true;
+        }
+        if (collision.gameObject.tag.Equals("Ally")) {
+            target = car;
+            canAttack = true;
+        }
     }
+
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        canAttack = false;
+        isAttacking = false;
+    }
+
+
 
     public Vector2 GetPosition()
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IAttackable
 {
@@ -38,15 +39,21 @@ public class Player : MonoBehaviour, IAttackable
     // Update is called once per frame
     void Update()
     {
-        x = joystick.Horizontal;
-        y = joystick.Vertical;
-        if (attackButton.isPressed && canShoot)
+        if (health <= 0)
         {
-            Shoot();
+            Destroy(gameObject);
+            SceneManager.LoadScene(1);
         }
-        Vector2 moveInput = new Vector2(x, y);
-        moveVelocity = moveInput * speed;
-     
+        else {
+            x = joystick.Horizontal;
+            y = joystick.Vertical;
+            if (attackButton.isPressed && canShoot)
+            {
+                Shoot();
+            }
+            Vector2 moveInput = new Vector2(x, y);
+            moveVelocity = moveInput * speed;
+        }
     }
 
     void FixedUpdate()
