@@ -43,19 +43,27 @@ public class Zombie : MonoBehaviour, IAttackable
     // Update is called once per frame
     void FixedUpdate()
     {
-        rotation = Mathf.Atan2(direction.y, direction.x) * 180 / Mathf.PI;
-        transform.eulerAngles = new Vector3(0, 0, rotation);
-        if (Vector2.Distance(rg.position, target.GetPosition()) < attackDistance)
+        if (health <= 0)
         {
-            if (!isAttacking)
-                StartCoroutine(Attack());
+            Destroy(this.gameObject);
         }
         else {
-            direction = new Vector2(target.GetPosition().x - rg.position.x, target.GetPosition().y - rg.position.y).normalized;
-            rg.MovePosition(rg.position + direction * speed * Time.fixedDeltaTime);
-            isMoving = true;
+            rotation = Mathf.Atan2(direction.y, direction.x) * 180 / Mathf.PI;
+            transform.eulerAngles = new Vector3(0, 0, rotation);
+            if (Vector2.Distance(rg.position, target.GetPosition()) < attackDistance)
+            {
+                if (!isAttacking)
+                    StartCoroutine(Attack());
+            }
+            else
+            {
+                direction = new Vector2(target.GetPosition().x - rg.position.x, target.GetPosition().y - rg.position.y).normalized;
+                rg.MovePosition(rg.position + direction * speed * Time.fixedDeltaTime);
+                isMoving = true;
+            }
+            Animate();
         }
-        Animate();
+        
     }
 
     void Animate() {
@@ -86,8 +94,10 @@ public class Zombie : MonoBehaviour, IAttackable
         isMoving = true;
     }
 
-    void OnCollisionEnter() {
-        
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.tag.Equals("Bullet")) {
+            Attack(10);
+        }
     }
 
     public Vector2 GetPosition()

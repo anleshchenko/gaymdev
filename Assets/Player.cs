@@ -20,8 +20,8 @@ public class Player : MonoBehaviour, IAttackable
     private Vector2 moveVelocity;
     private float x, y;
     
-    private Vector2 direction;
-    private float rotation;
+    public Vector2 direction;
+    public float rotation;
 
     private bool canShoot = true;
     private bool isRunning = false;
@@ -104,8 +104,6 @@ public class Player : MonoBehaviour, IAttackable
 
     void Shoot() {
         Bullet bulletClone = Instantiate(bullet, transform.position + (Vector3)(direction.normalized*0.47f - Vector2.Perpendicular(direction).normalized*0.15f), transform.rotation);
-        bulletClone.direction = this.direction.normalized;
-        bulletClone.rotation = this.rotation;
         StartCoroutine(ShootDelay());
     }
 

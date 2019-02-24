@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
-    public Vector2 direction;
+    public Player player;
     public float speed;
-    public float rotation;
 
+    private float rotation;
+    private Vector2 direction;
 
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        direction = player.direction.normalized;
+        rotation = player.rotation;
         rb = GetComponent<Rigidbody2D>();
         transform.eulerAngles = new Vector3(0, 0, rotation);       
     }
@@ -25,5 +27,8 @@ public class Bullet : MonoBehaviour
         rb.MovePosition(rb.position + direction*speed * Time.fixedDeltaTime);
     }
 
-    
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(this.gameObject);
+    }
 }
