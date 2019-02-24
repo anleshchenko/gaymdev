@@ -11,21 +11,23 @@ public class Zombie : MonoBehaviour, IAttackable
     public int health;
     public int damage;
     public Animator animator;
+    public ZombieWave zw;
 
     private bool isMoving = true;
-    public bool isAttacking;
-    public bool canAttack;
+    private bool isAttacking;
+    private bool canAttack;
     
     private Rigidbody2D rg;
     private Vector2 direction;
     private float rotation;
     private IAttackable target;
+    
 
     // Start is called before the first frame update
     void Start()
     {     
         rg = GetComponent<Rigidbody2D>();
-        chooseTarget();              
+        chooseTarget();    
     }
 
     private void chooseTarget() {
@@ -46,6 +48,7 @@ public class Zombie : MonoBehaviour, IAttackable
             if (health <= 0)
             {
                 Destroy(gameObject);
+                zw.KillZombie();
             }
             else {
                 direction = target.GetPosition() - rg.position;
@@ -53,7 +56,6 @@ public class Zombie : MonoBehaviour, IAttackable
                 transform.eulerAngles = new Vector3(0, 0, rotation);
                 if (canAttack && !isAttacking) {
                     StartCoroutine(AttackTarget());
-                    target.Attack(10);
                 }
                 if (!isAttacking) {
                     rg.MovePosition(rg.position + direction.normalized * speed * Time.fixedDeltaTime);
@@ -75,10 +77,12 @@ public class Zombie : MonoBehaviour, IAttackable
     }
 
     IEnumerator AttackTarget() {
-        if (!isAttacking && canAttack)
+        if (!isAttacking)
         {
             isAttacking = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.3f);
+            if (canAttack)
+                target.Attack(10);
             isAttacking = false;
         }
     }
