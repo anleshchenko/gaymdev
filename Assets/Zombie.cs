@@ -87,7 +87,7 @@ public class Zombie : MonoBehaviour, IAttackable
     }
 
     void OnCollisionEnter() {
-        if()
+        
     }
 
     public Vector2 GetPosition()

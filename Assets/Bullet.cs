@@ -25,12 +25,5 @@ public class Bullet : MonoBehaviour
         rb.MovePosition(rb.position + direction*speed * Time.fixedDeltaTime);
     }
 
-    void OnTriggerEnter(Collision col)
-    {
-        if (col.gameObject.tag == "Enemy")
-        {
-            col.gameObject.SendMessage("Attack", 10);
-        }
-        DestroyImmediate(gameObject);
-    }
+    
 }
