@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Base : MonoBehaviour, IAttackable
 {
-    public int health;
+    public float health;
 
     private Rigidbody2D rb;
 
@@ -28,7 +28,7 @@ public class Base : MonoBehaviour, IAttackable
         SceneManager.LoadScene(1);
     }
 
-    public void Attack(int damage)
+    public void Attack(float damage)
     {
         health -= damage;
     }

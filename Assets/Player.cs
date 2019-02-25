@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IAttackable
 {
-    public int health;
+    public float health;
     public float speed;
     public float bulletSpeed;
     public Animator anim;
@@ -27,7 +27,8 @@ public class Player : MonoBehaviour, IAttackable
     private bool canShoot = true;
     private bool isRunning = false;
     private bool isShooting = false;
-    private bool isStabbing = false;
+    public bool isStabbing = false;
+    private bool isReloading = false;
 
 
     // Start is called before the first frame update
@@ -51,6 +52,12 @@ public class Player : MonoBehaviour, IAttackable
             {
                 Shoot();
             }
+            if (stabButton.isPressed && canShoot) {
+                StartCoroutine(Stab());
+            }
+            if(reloadButton.isPressed && canShoot) {
+                StartCoroutine(Reload());
+            }
             Vector2 moveInput = new Vector2(x, y);
             moveVelocity = moveInput * speed;
         }
@@ -73,14 +80,24 @@ public class Player : MonoBehaviour, IAttackable
             isRunning = false;
             isStabbing = false;
         }
-        else if (stabButton.isPressed) {
-            if (!isStabbing)
+        else if (stabButton.isPressed)
+        {
+            if (isStabbing)
                 anim.Play("player_stab");
-            isStabbing = true;
             isShooting = false;
             isRunning = false;
         }
-        else{
+        else if (reloadButton.isPressed)
+        {
+            if (isReloading)
+            {
+                anim.Play("player_reload");
+            }
+            isShooting = false;
+            isRunning = false;
+        }
+        else
+        {
             if (x != 0f || y != 0f)
             {
                 if (!isRunning || isShooting || isStabbing)
@@ -91,12 +108,12 @@ public class Player : MonoBehaviour, IAttackable
             }
             else
             {
-                if (isRunning || isShooting || isStabbing)
+                if (isRunning || isShooting || isStabbing || isReloading)
                     anim.Play("player_idle");
                 isRunning = false;
                 isShooting = false;
                 isStabbing = false;
-            }           
+            }
         }
 
         if (x!= 0f || y!= 0f)
@@ -120,7 +137,28 @@ public class Player : MonoBehaviour, IAttackable
         canShoot = true;
     }
 
-    public void Attack(int damage)
+    IEnumerator Stab() {
+        if (!isStabbing)
+        {
+            canShoot = false;
+            isStabbing = true;
+            yield return new WaitForSeconds(0.5f);
+            isStabbing = false;
+            canShoot = true;
+        }
+    }
+
+    IEnumerator Reload() {
+        if (!isReloading) {
+            canShoot = false;
+            isReloading = true;
+            yield return new WaitForSeconds(1f);
+            isReloading = false;
+            canShoot = true;
+        }
+    }
+
+    public void Attack(float damage)
     {
         health -= damage;
     }

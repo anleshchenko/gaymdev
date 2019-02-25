@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IAttackable
 {
-    void Attack(int damage);
+    void Attack(float damage);
     Vector2 GetPosition();
 }

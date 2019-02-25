@@ -8,8 +8,8 @@ public class Zombie : MonoBehaviour, IAttackable
     public Base car;
     public float attackDistance;
     public float speed;
-    public int health;
-    public int damage;
+    public float health;
+    public float damage;
     public Animator animator;
     public ZombieWave zw;
 
@@ -27,7 +27,14 @@ public class Zombie : MonoBehaviour, IAttackable
     void Start()
     {     
         rg = GetComponent<Rigidbody2D>();
-        chooseTarget();    
+        chooseTarget();
+        // Значение усиления атаки (может быть отрицательным)
+        float powerBuff = Random.value - 0.5f;
+        // Значение усиления скорости (обратно пропорционально усилению атаки)
+        float speedBuff = -powerBuff;
+        // Применение усилений
+        damage += powerBuff*10;
+        speed += speedBuff / 2; 
     }
 
     private void chooseTarget() {
@@ -47,8 +54,7 @@ public class Zombie : MonoBehaviour, IAttackable
         if(player != null){
             if (health <= 0)
             {
-                Destroy(gameObject);
-                zw.KillZombie();
+                StartCoroutine(Die());
             }
             else {
                 direction = target.GetPosition() - rg.position;
@@ -80,11 +86,18 @@ public class Zombie : MonoBehaviour, IAttackable
         if (!isAttacking)
         {
             isAttacking = true;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.75f);
             if (canAttack)
                 target.Attack(10);
             isAttacking = false;
         }
+    }
+
+    IEnumerator Die() {
+        animator.Play("zombie_die");
+        yield return 0.5f;
+        Destroy(gameObject);
+        zw.KillZombie();
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
@@ -102,6 +115,17 @@ public class Zombie : MonoBehaviour, IAttackable
         }
     }
 
+    void OnTriggerStay2D(Collider2D collision) {
+        if (collision.gameObject.tag.Equals("MeleeAttack"))
+        {
+            if (player.isStabbing)
+            {
+                Attack(15);
+                player.isStabbing = false;
+            }
+        }
+    }
+
 
     void OnTriggerExit2D(Collider2D collision)
     {
@@ -116,7 +140,7 @@ public class Zombie : MonoBehaviour, IAttackable
         return rg.position;
     }
 
-    public void Attack(int damage)
+    public void Attack(float damage)
     {
         health -= damage;
     }
