@@ -284,8 +284,6 @@ C:\Users\Андрей\Desktop\gamedev2\gaymdev\obj\Debug\Assembly-CSharp.dll
 C:\Users\Андрей\Desktop\gamedev2\gaymdev\obj\Debug\Assembly-CSharp.pdb
 C:\Users\leand\gaymdev\Temp\bin\Debug\Assembly-CSharp.dll
 C:\Users\leand\gaymdev\Temp\bin\Debug\Assembly-CSharp.pdb
-C:\Users\leand\gaymdev\Temp\bin\Debug\ChannelPurchase.dll
-C:\Users\leand\gaymdev\Temp\bin\Debug\Editor.dll
 C:\Users\leand\gaymdev\Temp\bin\Debug\Microsoft.Win32.Primitives.dll
 C:\Users\leand\gaymdev\Temp\bin\Debug\mscorlib.dll
 C:\Users\leand\gaymdev\Temp\bin\Debug\netstandard.dll
@@ -479,8 +477,6 @@ C:\Users\leand\gaymdev\Temp\bin\Debug\UnityEngine.VideoModule.dll
 C:\Users\leand\gaymdev\Temp\bin\Debug\UnityEngine.VRModule.dll
 C:\Users\leand\gaymdev\Temp\bin\Debug\UnityEngine.WindModule.dll
 C:\Users\leand\gaymdev\Temp\bin\Debug\UnityEngine.XRModule.dll
-C:\Users\leand\gaymdev\Temp\bin\Debug\UnityStore.dll
-C:\Users\leand\gaymdev\Temp\bin\Debug\XiaomiSupport.dll
 C:\Users\leand\gaymdev\Temp\bin\Debug\UnityEngine.ClusterInputModule.dll
 C:\Users\leand\gaymdev\Temp\bin\Debug\UnityEngine.ClusterRendererModule.dll
 C:\Users\leand\gaymdev\Temp\bin\Debug\Unity.Cecil.dll
@@ -498,8 +494,6 @@ C:\Users\leand\gaymdev\Temp\bin\Debug\UnityEditor.xml
 C:\Users\leand\gaymdev\Temp\bin\Debug\Unity.TextMeshPro.Editor.pdb
 C:\Users\leand\gaymdev\Temp\bin\Debug\Unity.PackageManagerUI.Editor.pdb
 C:\Users\leand\gaymdev\Temp\bin\Debug\Unity.CollabProxy.Editor.pdb
-C:\Users\leand\gaymdev\Temp\bin\Debug\Editor.pdb
-C:\Users\leand\gaymdev\Temp\bin\Debug\XiaomiSupport.pdb
 C:\Users\leand\gaymdev\Temp\bin\Debug\Unity.TextMeshPro.pdb
 C:\Users\leand\gaymdev\Temp\bin\Debug\Unity.Analytics.DataPrivacy.pdb
 C:\Users\leand\gaymdev\Temp\bin\Debug\UnityEngine.AIModule.xml
