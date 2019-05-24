@@ -40,12 +40,18 @@ public class Player : MonoBehaviour, IAttackable
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    void FixedUpdate()
+    {
         if (health <= 0)
         {
             Destroy(gameObject);
             SceneManager.LoadScene(1);
         }
-        else {
+        else
+        {
             x = joystick.Horizontal;
             y = joystick.Vertical;
             if (attackButton.isPressed && isFree)
@@ -55,13 +61,15 @@ public class Player : MonoBehaviour, IAttackable
                 Shoot();
             }
 
-            if (stabButton.isPressed && isFree) {
+            if (stabButton.isPressed && isFree)
+            {
                 isFree = false;
                 isStabbing = true;
                 StartCoroutine(Stab());
             }
 
-            if(reloadButton.isPressed && isFree) {
+            if (reloadButton.isPressed && isFree)
+            {
                 isFree = false;
                 isReloading = true;
                 StartCoroutine(Reload());
@@ -69,10 +77,6 @@ public class Player : MonoBehaviour, IAttackable
             Vector2 moveInput = new Vector2(x, y);
             moveVelocity = moveInput * speed;
         }
-    }
-
-    void FixedUpdate()
-    {    
         rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
         Animate();
     }
