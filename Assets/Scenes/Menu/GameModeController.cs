@@ -2,35 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameModeController : MonoBehaviour
 {
-    public GameObject ButtonCampaign;
-    public GameObject ButtonSurvival;
-    public GameObject ButtonBack;
-    // Start is called before the first frame update
+    public Text campaign;
+    public Text survival;
+
     void Start()
     {
-
+        SetLanguage();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SetLanguage()
     {
-
+        Language lang = LanguageLoader.LoadLanguage(PlayerPrefs.GetString("lang"));
+        campaign.text = lang.campaign;
+        survival.text = lang.survival;
     }
+
     public void ShowCampaignMenu()
     {
-
-        
 
     }
     public void ShowSurvivalMenu()
     {
-
         SceneManager.LoadScene("Survival");
-
     }
+
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMenu"); 
