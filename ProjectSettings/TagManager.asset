@@ -9,6 +9,7 @@ TagManager:
   - Ally
   - MeleeAttack
   - Map
+  - Tree
   layers:
   - Default
   - TransparentFX

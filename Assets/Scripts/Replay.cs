@@ -7,18 +7,10 @@ using UnityEngine.SceneManagement;
 public class Replay : MonoBehaviour
 {
 
-
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(ReplayDelay());
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     IEnumerator ReplayDelay()

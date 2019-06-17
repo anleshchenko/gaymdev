@@ -18,6 +18,5 @@ public class PlayerAnimScript : MonoBehaviour
     void FixedUpdate()
     {
         
-
     }
 }

@@ -11,10 +11,10 @@ public class ZombieWave : MonoBehaviour
     public Player player;
     public Base car;
 
-    private float leftBorder = -3.75f;
-    private float rightBorder = 3.72f;
-    private float topBorder = 5.27f;
-    private float bottomBorder = -5.24f;
+    public float leftBorder = -9.5f;
+    public float rightBorder = 10.6f;
+    public float topBorder = 9.5f;
+    public float bottomBorder = 8.5f;
 
     private float offset;
     private int zombieTotal;
@@ -38,6 +38,8 @@ public class ZombieWave : MonoBehaviour
     {
         if (zombieTotal == 0) {
             wavesNumber--;
+            zombie.damage *= 1.05f;
+            zombie.speed *= 1.05f;
             if (wavesNumber > 0)
             {
                 SpawnZombies();

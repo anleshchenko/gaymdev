@@ -29,6 +29,18 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag.Equals("Tree") || collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("MeleeAttack"))
+            return;
+        else if (collision.gameObject.tag.Equals("Map"))
+            StartCoroutine(DestroyWithDelay());
+        else
+            Destroy(gameObject);
+    }
+
+    IEnumerator DestroyWithDelay()
+    {
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
+    
 }

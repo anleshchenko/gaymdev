@@ -5,21 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Menu/MainMenu.unity
     guid: a7da7fc9ebf893d44869da79e1ed62da
   - enabled: 1
-    path: Assets/Scenes/Menu/SettingsMenu.unity
-    guid: 7f9c239e255afd642964470aa426b480
-  - enabled: 1
     path: Assets/Scenes/Menu/GameModeMenu.unity
     guid: 15ec5b83c414d914f8afa1997b1a9a28
   - enabled: 1
-    path: Assets/Scenes/Levels/Survival.unity
-    guid: 78eec4abb8b81a54eaebb9537c09376d
+    path: Assets/Scenes/Levels/NewSurvival.unity
+    guid: 5a31219fb725c4642a3913499574450e
+  - enabled: 1
+    path: Assets/Scenes/Menu/SettingsMenu.unity
+    guid: 7f9c239e255afd642964470aa426b480
   - enabled: 1
     path: Assets/Scenes/Menu/DeadWindow.unity
     guid: 9299a574c0d975548ba576e298c78cf1

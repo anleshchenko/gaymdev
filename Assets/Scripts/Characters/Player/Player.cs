@@ -2,59 +2,73 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IAttackable
 {
+
     public float health;
     public float speed;
     public float bulletSpeed;
     public Bullet bullet;
+    public GameObject weaponIcon;
+
+    public Weapon Weapon { get; set; }
+
+    public RuntimeAnimatorController rifleAnimator;
+    public RuntimeAnimatorController pistolAnimator;
 
     public Joystick joystick;
     public Button attackButton;
     public Button reloadButton;
-    public Button stabButton;
+    public Button stabButton;  
 
     private Rigidbody2D rb;
     private Vector2 moveVelocity;
     private Animator animator;
-    public float x, y;
-    
-    public Vector2 direction;
-    public float rotation;
+    public float x { get; set; }
+    public float y { get; set; }
 
-    public bool isShooting = false;
-    public bool isStabbing = false;
-    public bool isReloading = false;
+    private Weapon pistol;
+    private Weapon rifle;
 
-    private bool isFree = true;
+    public Vector2 direction { get; set; }
+    public float rotation { get; set; }
 
+    public bool isShooting { get; set; }
+    public bool isStabbing { get; set; }
+    public bool isReloading { get; set; }
+
+    private bool isFree { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        pistol = GetComponentInChildren<Pistol>();
+        rifle = GetComponentInChildren<Rifle>();
+
+        Weapon = pistol;
+        animator.runtimeAnimatorController = pistolAnimator;
+        Weapon.Reload();
+        Weapon.UpdateText();
+        isFree = true;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void FixedUpdate()
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("GameModeMenu");
         }
         else
         {
             x = joystick.Horizontal;
             y = joystick.Vertical;
-            if (attackButton.isPressed && isFree)
+            if (attackButton.isPressed && isFree && Weapon.CanShoot())
             {
                 isFree = false;
                 isShooting = true;
@@ -68,7 +82,7 @@ public class Player : MonoBehaviour, IAttackable
                 StartCoroutine(Stab());
             }
 
-            if (reloadButton.isPressed && isFree)
+            if (reloadButton.isPressed && isFree && Weapon.CanReload())
             {
                 isFree = false;
                 isReloading = true;
@@ -96,13 +110,14 @@ public class Player : MonoBehaviour, IAttackable
     }
 
     void Shoot() {
-        Bullet bulletClone = Instantiate(bullet, transform.position + (Vector3)(direction.normalized*0.47f - Vector2.Perpendicular(direction).normalized*0.15f), transform.rotation);
+        Bullet bulletClone = Instantiate(bullet, transform.position + (Vector3)(direction.normalized*0.5f - Vector2.Perpendicular(direction).normalized*0.22f), transform.rotation);
+        Weapon.Shoot();
         StartCoroutine(ShootDelay());
     }
 
     IEnumerator ShootDelay() {
         isFree = false;
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(Weapon.ShootDelay);
         isShooting = false;
         isFree = true;
     }
@@ -117,6 +132,7 @@ public class Player : MonoBehaviour, IAttackable
     IEnumerator Reload() {
         isFree = false;
         yield return new WaitForSeconds(1f);
+        Weapon.Reload();
         isReloading = false;
         isFree = true;
     }
@@ -130,4 +146,22 @@ public class Player : MonoBehaviour, IAttackable
     {
         return rb.position;
     }
+
+    public void SwitchWeapon()
+    {
+        if (Weapon.Equals(rifle))
+        {
+            Weapon = pistol;
+            weaponIcon.GetComponent<Image>().sprite = pistol.GetComponent<SpriteRenderer>().sprite;
+            animator.runtimeAnimatorController = pistolAnimator;
+        }
+        else if (Weapon.Equals(pistol))
+        {
+            Weapon = rifle;
+            weaponIcon.GetComponent<Image>().sprite = rifle.GetComponent<SpriteRenderer>().sprite;
+            animator.runtimeAnimatorController = rifleAnimator;
+        }
+        Weapon.UpdateText();
+    }
+
 }

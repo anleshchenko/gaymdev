@@ -27,7 +27,7 @@ public class GameModeController : MonoBehaviour
     }
     public void ShowSurvivalMenu()
     {
-        SceneManager.LoadScene("Survival");
+        SceneManager.LoadScene("NewSurvival");
     }
 
     public void BackToMainMenu()

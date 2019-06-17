@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-
-
 public class LanguageLoader : MonoBehaviour
-{
-
-
-    
+{  
 
     public static Language LoadLanguage(string lang)
     {

@@ -156,5 +156,4 @@ public class Zombie : MonoBehaviour, IAttackable
     {
         health -= damage;
     }
-
 }
