@@ -61,6 +61,7 @@ public class SettingsController : MonoBehaviour
             PlayerPrefs.SetString("lang", "en_US");
             flag.sprite = us;
         }
+        PlayerPrefs.Save();
         SetLanguage();
     }
 

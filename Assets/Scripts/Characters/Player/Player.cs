@@ -62,7 +62,7 @@ public class Player : MonoBehaviour, IAttackable
     {
         if (health <= 0)
         {
-            SceneManager.LoadScene("GameModeMenu");
+            SceneManager.LoadScene("DeadWindow");
         }
         else
         {

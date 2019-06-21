@@ -23,6 +23,7 @@ public class GameModeController : MonoBehaviour
 
     public void ShowCampaignMenu()
     {
+        SceneManager.LoadScene("Levels");
 
     }
     public void ShowSurvivalMenu()

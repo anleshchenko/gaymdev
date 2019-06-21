@@ -3,7 +3,16 @@ guid: 2ecf4503d0248a849ae8d2ef66de629d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bullet: {fileID: 3497408419170408285, guid: 02fdefe7a6450fc4ba2e15ffda03d428,
+      type: 3}
+  - weaponIcon: {instanceID: 0}
+  - rifleAnimator: {instanceID: 0}
+  - pistolAnimator: {instanceID: 0}
+  - joystick: {instanceID: 0}
+  - attackButton: {instanceID: 0}
+  - reloadButton: {instanceID: 0}
+  - stabButton: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
