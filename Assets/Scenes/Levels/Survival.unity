@@ -605,7 +605,7 @@ SpriteRenderer:
   m_Size: {x: 7.68, y: 5.76}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!1 &315689666
@@ -1335,6 +1335,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1528,6 +1529,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febd9677c743edf438eddc40da2f5b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &610944527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10526,17 +10539,17 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.59999996
       objectReference: {fileID: 0}
+    - target: {fileID: 6050566937605849894, guid: 21883a29f0c8dff408257dd7fb1d0ed0,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.83
+      objectReference: {fileID: 0}
     - target: {fileID: 6050566937605849889, guid: 21883a29f0c8dff408257dd7fb1d0ed0,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300012, guid: 4e8b67eb5bfbd364caa1942af1ea0108,
         type: 3}
-    - target: {fileID: 6050566937605849894, guid: 21883a29f0c8dff408257dd7fb1d0ed0,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.83
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21883a29f0c8dff408257dd7fb1d0ed0, type: 3}
 --- !u!1 &1052300311
@@ -11306,7 +11319,7 @@ SpriteRenderer:
   m_Size: {x: 7.68, y: 5.76}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!1 &1440652133
@@ -11464,7 +11477,7 @@ SpriteRenderer:
   m_Size: {x: 7.68, y: 5.76}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!1 &1470455848
@@ -20570,16 +20583,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6680425965431051732, guid: 02fdefe7a6450fc4ba2e15ffda03d428,
-        type: 3}
-      propertyPath: m_Name
-      value: Bullet
-      objectReference: {fileID: 0}
     - target: {fileID: 3497408419170408285, guid: 02fdefe7a6450fc4ba2e15ffda03d428,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1865529105}
+    - target: {fileID: 6680425965431051732, guid: 02fdefe7a6450fc4ba2e15ffda03d428,
+        type: 3}
+      propertyPath: m_Name
+      value: Bullet
+      objectReference: {fileID: 0}
     - target: {fileID: 2294878405489679321, guid: 02fdefe7a6450fc4ba2e15ffda03d428,
         type: 3}
       propertyPath: m_LocalPosition.x

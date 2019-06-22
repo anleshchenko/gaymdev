@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\IAttackable.cs" />
     <Compile Include="Assets\Scripts\LanguageLoader.cs" />
     <Compile Include="Assets\Scripts\Levels\Survival.cs" />
+    <Compile Include="Assets\Scripts\MusicScript.cs" />
     <Compile Include="Assets\Scripts\Replay.cs" />
     <Compile Include="Assets\Scripts\TreeScript.cs" />
     <Compile Include="Assets\Scripts\Weapons\Pistol.cs" />

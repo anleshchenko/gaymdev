@@ -6,11 +6,19 @@ using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour
 {
-    public Image flag;
+    public Image flagImage;
+    public Image soundImage;
+    public Image musicImage;
 
-    public Sprite us; 
+    public Sprite us;
     public Sprite ukr;
     public Sprite rus;
+
+    public Sprite musicOff;
+    public Sprite musicOn;
+
+    public Sprite soundOff;
+    public Sprite soundOn;
 
     public Text settings;
     public Text language;
@@ -21,7 +29,9 @@ public class SettingsController : MonoBehaviour
 
     void Start()
     {
-        SetLanguage();  
+        SetLanguage();
+        SetSound();
+        SetMusic();        
     }
 
     private void SetLanguage()
@@ -33,11 +43,26 @@ public class SettingsController : MonoBehaviour
         sound.text = languageObj.sound;
         music.text = languageObj.music;
         if (lang == "uk_UA")
-            flag.sprite = ukr;
+            flagImage.sprite = ukr;
         if (lang == "ru_RU")
-            flag.sprite = rus;
+            flagImage.sprite = rus;
     }
 
+    private void SetMusic()
+    {
+        if (PlayerPrefs.GetInt("music") != 0)
+            musicImage.sprite = musicOn;
+        else
+            musicImage.sprite = musicOff;
+    }
+
+    private void SetSound()
+    {
+        if (PlayerPrefs.GetInt("sound") != 0)
+            soundImage.sprite = soundOn;
+        else
+            soundImage.sprite = soundOff;
+    }
 
     public void BackToMainMenu()
     {
@@ -49,24 +74,47 @@ public class SettingsController : MonoBehaviour
         if (lang == "en_US")
         {
             PlayerPrefs.SetString("lang", "uk_UA");
-            flag.sprite = ukr;
+            flagImage.sprite = ukr;
         }
         if (lang == "uk_UA")
         {
             PlayerPrefs.SetString("lang", "ru_RU");
-            flag.sprite = rus;
+            flagImage.sprite = rus;
         }
         if (lang == "ru_RU")
         {
             PlayerPrefs.SetString("lang", "en_US");
-            flag.sprite = us;
+            flagImage.sprite = us;
         }
         PlayerPrefs.Save();
         SetLanguage();
     }
 
-    private void SetLanguage(int lang)
+    public void SwitchMusic()
     {
+        if (PlayerPrefs.GetInt("music") == 0)
+        {
+            PlayerPrefs.SetInt("music", 1);
+            musicImage.sprite = musicOn;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("music", 0);
+            musicImage.sprite = musicOff;
+        }
+    }
 
+    public void SwitchSound()
+    {
+        if (PlayerPrefs.GetInt("sound") == 0)
+        {
+            PlayerPrefs.SetInt("sound", 1);
+            soundImage.sprite = soundOn;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("sound", 0);
+            soundImage.sprite = soundOff;
+        }
     }
 }

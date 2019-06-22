@@ -13,11 +13,11 @@ public class MenuController : MonoBehaviour
 
     void Start()
     {
-        ChooseLang();
+        SetPrefs();
         SetLanguage();
     }
 
-    private void ChooseLang()
+    private void SetPrefs()
     {
         if (!PlayerPrefs.HasKey("lang"))
         {
@@ -28,6 +28,11 @@ public class MenuController : MonoBehaviour
             else
                 PlayerPrefs.SetString("lang", "en_US");
         }
+
+        if (!PlayerPrefs.HasKey("music"))
+            PlayerPrefs.SetInt("music", 1);
+        if (!PlayerPrefs.HasKey("sound"))
+            PlayerPrefs.SetInt("sound", 1);
     }
 
     private void SetLanguage()

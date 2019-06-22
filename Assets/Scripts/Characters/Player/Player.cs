@@ -31,6 +31,7 @@ public class Player : MonoBehaviour, IAttackable
 
     private Weapon pistol;
     private Weapon rifle;
+    private AudioSource[] sounds;
 
     public Vector2 direction { get; set; }
     public float rotation { get; set; }
@@ -49,6 +50,8 @@ public class Player : MonoBehaviour, IAttackable
 
         pistol = GetComponentInChildren<Pistol>();
         rifle = GetComponentInChildren<Rifle>();
+        sounds = GetComponents<AudioSource>();
+        CheckSound();
 
         Weapon = pistol;
         animator.runtimeAnimatorController = pistolAnimator;
@@ -117,6 +120,7 @@ public class Player : MonoBehaviour, IAttackable
 
     IEnumerator ShootDelay() {
         isFree = false;
+        sounds[0].Play();
         yield return new WaitForSeconds(Weapon.ShootDelay);
         isShooting = false;
         isFree = true;
@@ -131,6 +135,7 @@ public class Player : MonoBehaviour, IAttackable
 
     IEnumerator Reload() {
         isFree = false;
+        sounds[1].Play();
         yield return new WaitForSeconds(1f);
         Weapon.Reload();
         isReloading = false;
@@ -164,4 +169,14 @@ public class Player : MonoBehaviour, IAttackable
         Weapon.UpdateText();
     }
 
+    private void CheckSound()
+    {
+        if (PlayerPrefs.GetInt("sound") == 0)
+        {
+            foreach (var s in sounds)
+            {
+                s.mute = true;
+            }
+        }
+    }
 }

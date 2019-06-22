@@ -141,10 +141,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7669ea4e9375c4ab4bec5a7e4f3ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flag: {fileID: 1677311689}
+  flagImage: {fileID: 1677311689}
+  soundImage: {fileID: 764561708}
+  musicImage: {fileID: 686946474}
   us: {fileID: 21300000, guid: 678b26069de78fe4ea0ef4dd4c603d0e, type: 3}
   ukr: {fileID: 21300000, guid: 444f03f980e43354bb8fecc5c9250483, type: 3}
   rus: {fileID: 21300000, guid: c24185c665915f34990d26fe7a658767, type: 3}
+  musicOff: {fileID: 21300000, guid: 7d4c6eae86638bd4d8f7088ee105d663, type: 3}
+  musicOn: {fileID: 21300000, guid: 75335785bbeb7694bbfb1bd5b5649b55, type: 3}
+  soundOff: {fileID: 21300000, guid: 6ae6916d79dd7994eb1b14c1223d0bca, type: 3}
+  soundOn: {fileID: 21300000, guid: 9c7f0c3d6f5c38d4cacf64f13fe730b7, type: 3}
   settings: {fileID: 827493273}
   language: {fileID: 1550070507}
   sound: {fileID: 1580357309}
@@ -965,7 +971,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1182276926}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 608483075}
+        m_MethodName: SwitchMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1182276926
@@ -1190,7 +1207,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1480280737}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 608483075}
+        m_MethodName: SwitchSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1480280737
@@ -1603,6 +1631,7 @@ GameObject:
   - component: {fileID: 1812370991}
   - component: {fileID: 1812370990}
   - component: {fileID: 1812370993}
+  - component: {fileID: 1812370994}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1770,6 +1799,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1812370994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812370989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febd9677c743edf438eddc40da2f5b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1899288275
 GameObject:
   m_ObjectHideFlags: 0

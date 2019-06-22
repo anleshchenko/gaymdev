@@ -9,17 +9,8 @@ public class LanguageLoader : MonoBehaviour
     public static Language LoadLanguage(string lang)
     {
         string path = Application.streamingAssetsPath + "/Languages/" + lang + ".json";
-        Language result;
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            TextAsset file = Resources.Load("Languages/" + lang) as TextAsset;
-            result = JsonUtility.FromJson<Language>(file.ToString());
-        }
-        else
-        {
-            result = JsonUtility.FromJson<Language>(File.ReadAllText(path));
-        }
-        return result;           
+        TextAsset file = Resources.Load("Languages/" + lang) as TextAsset;
+        return JsonUtility.FromJson<Language>(file.ToString());
     }
 }
 
@@ -33,6 +24,7 @@ public class Language
     public string language;
     public string sound;
     public string music;
+    public string loading;
 }
 
 public class Country
