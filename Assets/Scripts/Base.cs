@@ -34,7 +34,7 @@ public class Base : MonoBehaviour, IAttackable
 
     IEnumerator BaseDestroy() {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("DeadWindow");
     }
 
     public void Attack(float damage)
