@@ -25,6 +25,8 @@ public class Language
     public string sound;
     public string music;
     public string loading;
+    public string score;
+    public string record;
 }
 
 public class Country

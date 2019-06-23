@@ -26,10 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu/WinWindow.unity
     guid: 68856cfe5f4d09845b49d83483a5e3e3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu/WinWindow2.unity
     guid: c228988acf00fe04086748da92a4562d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu/WinWindow3.unity
     guid: 2543060907980c24fa2f4df6015642af
   - enabled: 1

@@ -19,9 +19,9 @@ public class Levels : MonoBehaviour
     public GameObject ButtonLvl;
     public GameObject ButtonBack;
 
-    public void StartLevel()
+    public void StartLevel(int num)
     {
-        SceneManager.LoadScene("Survival");
+        SceneManager.LoadScene(num + "lvl");
     }
 
     public void BackToGMMenu()

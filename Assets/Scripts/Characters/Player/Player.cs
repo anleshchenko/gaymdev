@@ -65,7 +65,10 @@ public class Player : MonoBehaviour, IAttackable
     {
         if (health <= 0)
         {
-            SceneManager.LoadScene("DeadWindow");
+            if (SceneManager.GetActiveScene().name.Equals("NewSurvival"))
+                SceneManager.LoadScene("DeadWindowSurvival");
+            else
+                SceneManager.LoadScene("DeadWindowCampaign");
         }
         else
         {

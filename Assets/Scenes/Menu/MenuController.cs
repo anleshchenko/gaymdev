@@ -33,6 +33,10 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("music", 1);
         if (!PlayerPrefs.HasKey("sound"))
             PlayerPrefs.SetInt("sound", 1);
+        if (!PlayerPrefs.HasKey("record"))
+            PlayerPrefs.SetInt("record", 0);
+        if (PlayerPrefs.GetInt("record") > 200)
+            PlayerPrefs.SetInt("record", 0);
     }
 
     private void SetLanguage()

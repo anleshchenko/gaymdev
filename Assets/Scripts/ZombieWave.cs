@@ -53,7 +53,7 @@ public class ZombieWave : MonoBehaviour
     IEnumerator Win() {
         yield return new WaitForSeconds(1f);
         if (zombieTotal == 0) {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("WinWindow");
         }
     }
 
